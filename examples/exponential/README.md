@@ -40,7 +40,73 @@ The fibonacci function has been called 15 times! This graph will help us to visu
 
 Fibonacci classic recursive algorithm is exponential `O(2^N)`. There are a lot of duplicate computations, this is where we can optimise.
 
+### Memoised fibonnaci example
+
+Memoisation is commonly used to optimise heavy computations, especially repetative computations that don't change often. We introduce lookup table called `memoisedValues` and store each computed value inside:
+
+```
+  if (number <= 1) {
+    result = number
+  } else {
+    result = fibonacci(number - 1, memoisedValues) + fibonacci(number - 2, memoisedValues)
+  }
+
+  // result of each computation will get stored in this array
+  memoisedValues[number] = result
+```
+
+And then when we perform lookup that happens in constant time to determine if value for given number has already been computed:
+
+```
+  if (memoisedValues[number]) {
+    return memoisedValues[number]
+  }
+```
+
+With this computation we do heavy computation only for new `number`, for any number that has already been computed we simply only look it up in `memoisedValues` array. Let's determine time complexity of this solution.
+
+This block of code happens in constant `O(1)` time:
+
+```
+  if (memoisedValues[number]) {
+    return memoisedValues[number]
+  }
+```
+
+This block of code will be called only `N` times:
+
+```
+  if (number <= 1) {
+    result = number
+  } else {
+    result = fibonacci(number - 1, memoisedValues) + fibonacci(number - 2, memoisedValues)
+  }
+```
+
+And within above block fibonacci function will be called at most `2` times:
+
+```
+result = fibonacci(number - 1, memoisedValues) + fibonacci(number - 2, memoisedValues)
+```
+
+Additionally function is called `1` time initially:
+
+```
+fibonacci(n, memo)
+```
+
+This gives us time complexity:
+
+```
+O(2N + 1)*O(1) =
+O(2N + 1) =
+O(N)
+```
+
+The final complexity of memoised solution is `O(N)` which is huge improvement over previous `O(2^N)` solution.
+
 ## Tips
 
 - If the algorithm recursively calls branches, usually its exponential time complexity.
 - `O(2^N)` algorithms are often optimised by dynamic programming.
+- Memoise heavy and/or repetitive computation
