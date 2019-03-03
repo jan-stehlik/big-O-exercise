@@ -109,4 +109,4 @@ The final complexity of memoised solution is `O(N)` which is huge improvement ov
 
 - If the algorithm recursively calls branches, usually its exponential time complexity.
 - `O(2^N)` algorithms are often optimised by dynamic programming.
-- Memoise heavy and/or repetitive computation
+- Memoise heavy and/or repetitive computations.
