@@ -9,6 +9,7 @@ We start with `N` sorted array. After one step we decrease size by a half `N/2`.
 #### Given we have N inputs in sorted array how many steps do we need to do in order to find a target element?
 
 Let's try with 16 inputs first `N = 16`. The worst case scenario to find an element is `4`.
+![binary tree](http://danielschlegel.org/teaching/111/images/BST.png)
 
 ```
 N = 16  // starting point
